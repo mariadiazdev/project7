@@ -1,0 +1,8 @@
+{
+  "development": {
+    "port": "54352",
+    "host": "junction.proxy.rlwy.net",
+    "dialect": "postgres"
+  }
+  
+}
