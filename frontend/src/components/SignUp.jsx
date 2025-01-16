@@ -5,10 +5,12 @@ import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import '../styles/Login.css';
 
-// Login Component
-function Login() {
+// SignUp Component
+function SignUp () {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setlastName] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate(); 
 
@@ -16,16 +18,13 @@ function Login() {
     e.preventDefault();
 
     axios
-      .post("http://localhost:3000/api/auth/login", { email, password })
+      .post("http://localhost:3000/api/auth//signup", { email, password,firstName,lastName })
       .then((response) => {
-        const token = response.data.token;
-        localStorage.setItem("authToken", token);
-        localStorage.setItem("userId", response.data.userId);
-        navigate("/home"); // Use navigate to redirect
+        navigate("/signup"); // Use navigate to redirect
       })
       .catch((error) => {
-        if (error.response && error.response.status === 401) {
-          setErrorMessage("Invalid credentials. Please try again.");
+        if (error.response && error.response.status === 400) {
+          setErrorMessage(errorMessage);
         } else {
           setErrorMessage("An error occurred. Please try again later.");
         }
@@ -35,8 +34,21 @@ function Login() {
   return (
     <div className="form-body">
       <form onSubmit={handleSubmit}>
-        <h1>Login</h1>
+        <h1>Sign Up</h1>
         {errorMessage && <p className="error">{errorMessage}</p>}
+        
+        <input
+          type="first name"
+          placeholder="First Name"
+          value={firstName}
+          onChange={(e) => setFirstName(e.target.value)}
+        />
+        <input
+          type="last name"
+          placeholder="Last Name"
+          value={lastName}
+          onChange={(e) => setlastName(e.target.value)}
+        />
         <input
           type="email"
           placeholder="Email"
@@ -50,10 +62,10 @@ function Login() {
           onChange={(e) => setPassword(e.target.value)}
         />
         <p>Don't have an account? <Link to="/signup">Sign Up</Link></p>
-        <Button variant="dark" type="submit">Login</Button>
+        <Button variant="dark" type="submit">Sign Up</Button>
       </form>
     </div>
   );
 }
 
-export default Login;
+export default SignUp;

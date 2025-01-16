@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-d
 import Home from "./Home";
 import Login from "./Login";
 import NavBar from "./NavBar";
+import SignUp from "./SignUp";
+
 import "bootstrap/dist/css/bootstrap.css";
 
 function App() {
@@ -18,11 +20,15 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={isLoggedIn ? <Navigate to="/home" /> : <Navigate to="/login" />}
+          element={<Navigate to="/login" />}
         />
         <Route
           path="/login"
           element={<Login />}
+        />
+        <Route
+          path="/signup"
+          element={<SignUp />}
         />
         <Route
           path="/home"

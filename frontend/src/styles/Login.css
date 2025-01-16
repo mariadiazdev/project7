@@ -2,7 +2,7 @@
     --main-color: #FD2D00;
     --side-color: #FFD7D7;
   }
-  .login-body {
+  .form-body {
     display: flex;
     justify-content: center;
     align-items: center;
