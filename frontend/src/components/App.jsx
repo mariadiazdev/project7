@@ -1,23 +1,35 @@
-import React, { useState } from "react";
-import Banner from "./Banner";
-import Home from "./Home"; 
-import Login from "./Login"; 
+import React from "react";
+import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
+import Home from "./Home";
+import Login from "./Login";
+import NavBar from "./NavBar";
+import "bootstrap/dist/css/bootstrap.css";
 
-// App Component (Event-driven routing)
 function App() {
-  const [currentView, setCurrentView] = useState("login");
-
-  const handleLoginSuccess = () => {
-    setCurrentView("home"); 
+  const isLoggedIn = !!localStorage.getItem("authToken");
+  const handleLogout = () => {
+    localStorage.removeItem("authToken"); // Clear stored token
+    localStorage.removeItem("userId");
   };
 
   return (
-    <div>
-      <Banner /> {/* Add the Banner component here to display it on every page */}
-
-      {currentView === "login" && <Login onLoginSuccess={handleLoginSuccess} />}
-      {currentView === "home" && <Home />}
-    </div>
+    <Router>
+      <NavBar />
+      <Routes>
+        <Route
+          path="/"
+          element={isLoggedIn ? <Navigate to="/home" /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/login"
+          element={<Login />}
+        />
+        <Route
+          path="/home"
+          element={isLoggedIn ? <Home /> : <Navigate to="/login" />}
+        />
+      </Routes>
+    </Router>
   );
 }
 

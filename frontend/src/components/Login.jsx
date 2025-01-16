@@ -1,13 +1,16 @@
-import axios from "axios"
-import { useState } from "react"
-import '../styles/Login.css';
+import axios from "axios";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Import hook correctly
+import { Link } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
 import '../styles/Login.css';
 
 // Login Component
-function Login({ onLoginSuccess }) {
+function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate(); 
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -17,7 +20,8 @@ function Login({ onLoginSuccess }) {
       .then((response) => {
         const token = response.data.token;
         localStorage.setItem("authToken", token);
-        onLoginSuccess(); 
+        localStorage.setItem("userId", response.data.userId);
+        navigate("/home"); // Use navigate to redirect
       })
       .catch((error) => {
         if (error.response && error.response.status === 401) {
@@ -29,7 +33,7 @@ function Login({ onLoginSuccess }) {
   };
 
   return (
-    <div>
+    <div className="login-body">
       <form onSubmit={handleSubmit}>
         <h1>Login</h1>
         {errorMessage && <p className="error">{errorMessage}</p>}
@@ -45,9 +49,11 @@ function Login({ onLoginSuccess }) {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button type="submit">Login</button>
+        <p>Don't have an account? <Link to="/signup">Sign Up</Link></p>
+        <Button variant="dark" type="submit">Login</Button>
       </form>
     </div>
   );
 }
-export default Login
+
+export default Login;

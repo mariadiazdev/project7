@@ -1,10 +1,12 @@
 import React from 'react';
 // PascalCasing
 function Home() {
+  const name = 'Maria'
+
   return (
-    // JSX Code
+    // JSX: JavaScript XML
     <div>
-      <h1>Welcome to the Home Page</h1>
+      <h1>Hi {name},</h1>
       <p>You have successfully logged in!</p>
     </div>
   );
