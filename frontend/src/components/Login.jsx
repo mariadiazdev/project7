@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Import hook correctly
-import { Link } from 'react-router-dom';
+import { useNavigate, Link } from "react-router-dom"; 
+import { useAuth } from "../context/AuthContext"; 
+
 import Button from 'react-bootstrap/Button';
 import '../styles/Login.css';
 
@@ -12,24 +13,35 @@ function Login() {
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate(); 
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const { login } = useAuth(); // login function from context
 
-    axios
-      .post("http://localhost:3000/api/auth/login", { email, password })
-      .then((response) => {
-        const token = response.data.token;
-        localStorage.setItem("authToken", token);
-        localStorage.setItem("userId", response.data.userId);
-        navigate("/home"); // Use navigate to redirect
-      })
-      .catch((error) => {
-        if (error.response && error.response.status === 401) {
-          setErrorMessage("Invalid credentials. Please try again.");
-        } else {
-          setErrorMessage("An error occurred. Please try again later.");
-        }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setErrorMessage(""); 
+
+      try {
+      const response = await axios.post("http://localhost:3000/api/auth/login", {
+        email,
+        password,
       });
+      const { token, userId } = response.data;
+
+      // Call the login context function
+      login(token, userId);
+
+      // Optionally clear the inputs
+      setEmail("");
+      setPassword("");
+
+      // Redirect to home after successful login
+      navigate("/home");
+    } catch (error) {
+      if (error.response && error.response.status === 401) {
+        setErrorMessage("Invalid credentials. Please try again.");
+      } else {
+        setErrorMessage("An error occurred. Please try again later.");
+      }
+    }
   };
 
   return (
