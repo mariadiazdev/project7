@@ -1,15 +1,16 @@
 import React from 'react';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
+import Posts from "./Posts";
 // PascalCasing
 function Home() {
-  const name = 'Maria'
 
   return (
-    // JSX: JavaScript XML
-    <div>
-      <h1>Hi {name},</h1>
-      <p>You have successfully logged in!</p>
-    </div>
+    <Posts />
+
   );
 }
 
 export default Home;
+
+

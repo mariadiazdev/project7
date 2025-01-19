@@ -1,13 +1,13 @@
 import axios from "axios";
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom"; // Import hook correctly
+import { useNavigate, Link } from "react-router-dom"; 
 import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
 
 import '../styles/App.css';
 
 
-// SignUp Component
+
 function SignUp () {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -66,13 +66,13 @@ function SignUp () {
           onChange={(e) => setPassword(e.target.value)}
         />
                 <input
-          type="first name"
+          type="text"
           placeholder="First Name"
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
         />
         <input
-          type="last name"
+          type="text"
           placeholder="Last Name"
           value={lastName}
           onChange={(e) => setlastName(e.target.value)}
