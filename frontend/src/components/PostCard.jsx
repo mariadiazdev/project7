@@ -11,18 +11,20 @@ function PostCard({ singlePost }) {
   console.log(singlePost.title)
 
   const isOwner = singlePost.userId == localStorage.getItem("userId")
-  const postId = singlePost.postId
+  const postId = singlePost.id
   const { deleteResource } = useDelete();
   const navigate = useNavigate();
 
 
   console.log('canDelete =>', isOwner);
+  console.log(`postId => ${postId}`)
 
   const handleDelete = async () => {
     try {
+      console.log(`INSIDEDELETE => ${singlePost}`)
       await deleteResource(
         `http://localhost:3000/api/post/${postId}`,
-        localStorage.getItem("authToken")
+        localStorage.getItem("authToken") 
       );
       console.log('Deleted Post:', postId);
       navigate("/home");
