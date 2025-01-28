@@ -37,7 +37,7 @@ function Create() {
     );
 
     if (media) {
-      formData.append("image", media);
+      formData.append("file", media);
     }
 
     try {
@@ -62,7 +62,7 @@ function Create() {
   };
 
   return (
-    <div className="form-body create-form">
+    <div className="form-body create-form" >
       <form onSubmit={handleSubmit}>
         <h1>Create A Post</h1>
 
@@ -77,7 +77,7 @@ function Create() {
         />
 
         <input
-          type="text"
+          type="textarea"
           placeholder="Message"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
@@ -85,7 +85,7 @@ function Create() {
 
         <input
           type="file"
-          accept="image/*"
+          accept="image/*,audio/*,video/* "
           onChange={(e) => setMedia(e.target.files[0])}
         />
 

@@ -49,18 +49,21 @@ function Login() {
       <form onSubmit={handleSubmit}>
         <h1>Login</h1>
         {errorMessage && <p className="error">{errorMessage}</p>}
+        <label for="Email" class="signup-label">Email</label>
         <input
           type="email"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
+        <label for="password" class="signup-label">Password</label>
         <input
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
+        
         <p>Don't have an account? <Link to="/signup">Sign Up</Link></p>
         <Button variant="dark" type="submit">Login</Button>
       </form>

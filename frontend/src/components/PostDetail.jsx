@@ -9,17 +9,18 @@ function PostDetail() {
     const { postId } = useParams();
     const authToken = localStorage.getItem('authToken');
     const userId = localStorage.getItem('userId');
+    console.log(`UserID=>${userId}`)
     const [postData, setPostData] = useState(null);
 
-    // Get post Data
+   
     const { results, error } = useFetch(
         `http://localhost:3000/api/post/?userId=${userId}&postId=${postId}`,
         authToken
     );
-    // Mark post as Read if not read already
+    
     useEffect(() => {
         if (results && !results.isRead) {
-            fetch(`http://localhost:3000/api/post/read?userId=111&postId=${postId}`, {
+            fetch(`http://localhost:3000/api/post/read?userId=${userId}&postId=${postId}`, {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${authToken}`,

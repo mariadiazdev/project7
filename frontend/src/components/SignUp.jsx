@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom"; 
+import { useNavigate, Link } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
 
@@ -8,7 +8,7 @@ import '../styles/App.css';
 
 
 
-function SignUp () {
+function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -16,7 +16,7 @@ function SignUp () {
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
 
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -26,11 +26,11 @@ function SignUp () {
     }
 
     axios
-      .post("http://localhost:3000/api/auth/signup", { email, password,firstName,lastName })
+      .post("http://localhost:3000/api/auth/signup", { email, password, firstName, lastName })
       .then((response) => {
-        setErrorMessage(""); 
+        setErrorMessage("");
         setSuccessMessage("Registration successful! You can now log in.");
-        
+
         setTimeout(() => navigate("/login"), 1000);
       })
       .catch((error) => {
@@ -46,31 +46,34 @@ function SignUp () {
     <div className="form-body">
       <form onSubmit={handleSubmit}>
         <h1>Sign Up</h1>
-    {/* Success Alert */}
-    {successMessage && <Alert variant="success">{successMessage}</Alert>}
-        
+        {/* Success Alert */}
+        {successMessage && <Alert variant="success">{successMessage}</Alert>}
+
         {/* Error Message */}
         {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
-                
 
+        <label for="email" class="signup-label">Email</label>
         <input
           type="email"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
+        <label for="password" class="signup-label">Password</label>
         <input
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-                <input
+        <label for="First Name" class="signup-label">First Name</label>
+        <input
           type="text"
           placeholder="First Name"
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
         />
+        <label for="Last Name" class="signup-label"> Last Name</label>
         <input
           type="text"
           placeholder="Last Name"
