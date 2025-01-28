@@ -20,7 +20,7 @@ function Create() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-//Check all fields
+    //Check all fields
     if (!title || (!message && !media)) {
       setErrorMessage("Please provide a title and either a message or an image.");
       return;
@@ -32,7 +32,7 @@ function Create() {
       JSON.stringify({
         title,
         message,
-        userId, 
+        userId,
       })
     );
 
@@ -44,16 +44,15 @@ function Create() {
       const response = await axios.post("http://localhost:3000/api/post", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
-          "Authorization": "Bearer "+ localStorage.authToken
+          "Authorization": "Bearer " + localStorage.authToken
         },
       });
 
       setSuccessMessage(response.data.message || "Post created successfully!");
-      // TODO: USE TOSTIFY
       setErrorMessage("");
       setTimeout(() => navigate("/Home"), 1000);
 
-      
+
     } catch (error) {
       console.error("Error creating post:", error);
       setErrorMessage("An error occurred while creating your post.");
@@ -68,7 +67,7 @@ function Create() {
 
         {successMessage && <Alert variant="success">{successMessage}</Alert>}
         {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
-        
+
         <input
           type="text"
           placeholder="Title"

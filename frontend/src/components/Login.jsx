@@ -49,14 +49,14 @@ function Login() {
       <form onSubmit={handleSubmit}>
         <h1>Login</h1>
         {errorMessage && <p className="error">{errorMessage}</p>}
-        <label for="Email" class="signup-label">Email</label>
+        <label htmlFor="Email" className="signup-label">Email</label>
         <input
           type="email"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        <label for="password" class="signup-label">Password</label>
+        <label htmlFor="password" className="signup-label">Password</label>
         <input
           type="password"
           placeholder="Password"

@@ -96,6 +96,7 @@ function Posts() {
 
   return (
     <div className="container">
+      <h1> View Posts</h1>
       <Row>
         {sortedPosts.map((post) => (
           <Col
