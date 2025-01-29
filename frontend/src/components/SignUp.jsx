@@ -52,29 +52,34 @@ function SignUp() {
         {/* Error Message */}
         {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
 
-        <label for="email" class="signup-label">Email</label>
+        <label htmlFor="email" class="signup-label" >Email</label>
         <input
+          id="email"
           type="email"
           placeholder="Email"
+          autocomplete="off"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        <label for="password" class="signup-label">Password</label>
+        <label htmlFor="password" class="signup-label">Password</label>
         <input
+          id="password"
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <label for="First Name" class="signup-label">First Name</label>
+        <label htmlFor="FirstName" class="signup-label">First Name</label>
         <input
+          id="FirstName"
           type="text"
           placeholder="First Name"
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
         />
-        <label for="Last Name" class="signup-label"> Last Name</label>
+        <label htmlFor="LastName" class="signup-label"> Last Name</label>
         <input
+          id="LastName"
           type="text"
           placeholder="Last Name"
           value={lastName}

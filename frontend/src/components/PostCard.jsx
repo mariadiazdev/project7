@@ -2,7 +2,7 @@ import React from 'react';
 import { useDelete } from './hooks/useDelete';
 import { Card, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-
+import '../styles/home.css';
 function PostCard({ singlePost }) {
   const { deleteResource } = useDelete();
   const navigate = useNavigate();
@@ -81,7 +81,7 @@ function PostCard({ singlePost }) {
 
       <Card.Body>
         <Card.Title>{singlePost.title}</Card.Title>
-        <Card.Text>{singlePost.message}</Card.Text>
+        <Card.Text >{singlePost.message}</Card.Text>
         <Button onClick={goBack} variant="dark">
           Back
         </Button>

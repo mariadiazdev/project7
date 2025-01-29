@@ -51,6 +51,7 @@ function Login() {
         {errorMessage && <p className="error">{errorMessage}</p>}
         <label htmlFor="Email" className="signup-label">Email</label>
         <input
+          id="Email"
           type="email"
           placeholder="Email"
           value={email}
@@ -58,6 +59,7 @@ function Login() {
         />
         <label htmlFor="password" className="signup-label">Password</label>
         <input
+          id="password"
           type="password"
           placeholder="Password"
           value={password}

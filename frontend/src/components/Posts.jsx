@@ -63,7 +63,7 @@ function PostCard({ title, message, mediaUrl, isRead, postId }) {
 
       <Card.Body>
         <Card.Title>{title}</Card.Title>
-        <Card.Text>{message}</Card.Text>
+        <Card.Text className="truncate-text" >{message}</Card.Text>
         <Button onClick={readPost} variant="dark">
           {buttonText}
         </Button>
